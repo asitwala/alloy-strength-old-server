@@ -11,7 +11,7 @@ module.exports = {
         ref: 'origin/master',
         repo: 'git@github.com:asitwala/alloy-strength-server.git',
         path: '/home/ubuntu/alloy-strength-server',
-        'post-deploy': 'npm install && pm2 startOrRestart ecosystem.config.js'
+        'post-deploy': 'npm install && pm2 startOrRestart ecosystem.config.js && npm run build && pm2 start dist/src/app.js'
       }
     }
 }

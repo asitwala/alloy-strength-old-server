@@ -7,7 +7,7 @@
     "restart": "pm2 startOrRestart ecosystem.config.js",
     "deploy": "pm2 deploy ecosystem.config.js production",
     "build": "rimraf dist/ && babel ./ --out-dir dist/ --ignore ./node_modules",
-    "start": "yarn run build && ./node_modules/nodemon/bin/nodemon.js dist/src/app.js",
+    "start": "npm run build && ./node_modules/nodemon/bin/nodemon.js dist/src/app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
