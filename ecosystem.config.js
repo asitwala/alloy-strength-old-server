@@ -1,4 +1,4 @@
-export default {
+module.exports = {
     apps: [{
       name: 'alloy-strength-server',
       script: './src/app.js'
@@ -14,4 +14,4 @@ export default {
         'post-deploy': 'npm install && pm2 startOrRestart ecosystem.config.js'
       }
     }
-};
+}
