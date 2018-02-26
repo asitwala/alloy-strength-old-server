@@ -20,32 +20,24 @@ var _connectHistoryApiFallback = require('connect-history-api-fallback');
 
 var _connectHistoryApiFallback2 = _interopRequireDefault(_connectHistoryApiFallback);
 
-var _mongoose = require('mongoose');
-
-var _mongoose2 = _interopRequireDefault(_mongoose);
-
-var _user = require('../src/models/user');
-
-var _user2 = _interopRequireDefault(_user);
-
-var _db = require('../config/db');
-
-var _db2 = _interopRequireDefault(_db);
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+// to work with Vue Router's 'history' mode
+// import mongoose from 'mongoose'; 
+// import User from '../src/models/user'; 
+// import config from '../config/db';
+
 // Connect to the database
-_mongoose2.default.connect(_db2.default.db);
+// mongoose.connect(config.db);
 
 // When running locally
 //mongoose.connect('mongodb://localhost:27017/users');
 
-// to work with Vue Router's 'history' mode
-var db = _mongoose2.default.connection;
-db.on('error', console.error.bind(console, 'Connection Error'));
-db.once('open', function (callback) {
-    console.log('Connection Succeeded');
-});
+// let db = mongoose.connection;
+// db.on('error', console.error.bind(console, 'Connection Error'));
+// db.once('open', (callback) => {
+//     console.log('Connection Succeeded');
+// });
 
 var app = (0, _express2.default)();
 app.use((0, _morgan2.default)('combined'));
@@ -59,37 +51,38 @@ app.get('/', function (req, res) {
     }]);
 });
 
-app.post('/users', function (req, res) {
-    var db = req.db;
-    var firstName = req.body.firstName;
-    var email = req.body.email;
-    var newUser = new _user2.default({
-        firstName: firstName,
-        email: email
-    });
+// app.post('/users', (req, res) => {
+//     let db = req.db;
+//     let firstName = req.body.firstName; 
+//     let email = req.body.email; 
+//     let newUser = new User({
+//         firstName: firstName,
+//         email: email
+//     });
 
-    newUser.save(function (error) {
-        if (error) {
-            console.log(error);
-        } else {
-            res.send({
-                success: true,
-                message: 'User saved successfully!'
-            });
-        }
-    });
-});
+//     newUser.save(error => {
+//         if (error) {
+//             console.log(error);
+//         } else {
+//             res.send({
+//                 success: true,
+//                 message: 'User saved successfully!'
+//             })
+//         }
+//     })
+// });
 
-app.get('/users', function (req, res) {
-    _user2.default.find({}, 'firstName email', function (error, user) {
-        if (error) {
-            console.error(error);
-        }
-        res.send({
-            users: user
-        });
-    }).sort({ _id: -1 });
-});
+// app.get('/users', (req, res) => {
+//     User.find({}, 'firstName email', (error, user) => {
+//         if (error) {
+//             console.error(error);
+//         }
+//         res.send({
+//             users: user
+//         })
+//     }).sort({_id:-1})
+// })
+
 
 console.log('App is listening on http://localhost:8081');
 
