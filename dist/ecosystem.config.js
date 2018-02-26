@@ -3,7 +3,7 @@
 module.exports = {
   apps: [{
     name: 'alloy-strength-server',
-    script: './src/app.js'
+    script: 'dist/src/app.js'
   }],
   deploy: {
     production: {
@@ -13,7 +13,7 @@ module.exports = {
       ref: 'origin/master',
       repo: 'git@github.com:asitwala/alloy-strength-server.git',
       path: '/home/ubuntu/alloy-strength-server',
-      'post-deploy': 'npm install && pm2 startOrRestart ecosystem.config.js'
+      'post-deploy': 'npm install && npm run build && pm2 startOrRestart ecosystem.config.js'
     }
   }
 };
