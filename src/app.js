@@ -8,10 +8,10 @@ import User from '../src/models/user';
 import config from '../config/db';
 
 // Connect to the database
-mongoose.connect(config.db);
+//mongoose.connect(config.db);
 
 // When running locally
-//mongoose.connect('mongodb://localhost:27017/users');
+mongoose.connect('mongodb://localhost:27017/users');
 
 let db = mongoose.connection;
 db.on('error', console.error.bind(console, 'Connection Error'));

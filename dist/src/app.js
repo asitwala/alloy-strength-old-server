@@ -35,12 +35,12 @@ var _db2 = _interopRequireDefault(_db);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 // Connect to the database
-_mongoose2.default.connect(_db2.default.db);
+//mongoose.connect(config.db);
 
 // When running locally
-//mongoose.connect('mongodb://localhost:27017/users');
+_mongoose2.default.connect('mongodb://localhost:27017/users'); // to work with Vue Router's 'history' mode
 
-// to work with Vue Router's 'history' mode
+
 var db = _mongoose2.default.connection;
 db.on('error', console.error.bind(console, 'Connection Error'));
 db.once('open', function (callback) {
